@@ -2,9 +2,9 @@ import styled from '@emotion/styled'
 
 const Root = styled.header`
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     padding: 32px;
-    
+
 `
 const Title = styled.div`
     margin-right: auto;
@@ -12,14 +12,29 @@ const Title = styled.div`
 
 const Search = styled.input`
     margin-right: 32px;
+    background: url("/icons/search.svg") no-repeat 3px;
+    border: none;
+    outline: none;
+    color: #d3d3d3;
+    padding: 6px 12px 6px 36px;
+    :focus {
+        border: solid 2px yellow;
+        border-radius: 20px;
+    }
 `
 const RootAttention = styled.div`
     margin-right: 32px;
+    position: relative;
 `
 const AttentionAmount = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 20px;
+  position: absolute;
+  top: -4px;
+  right: -10px;
+  text-align: center;
+  width: 12px;
+  height: 12px;
+  font-size: 10px;
+  background-color: #fc9e38;
   border-radius: 16px;
   transition: all 0.2s;
   user-select: none;
@@ -69,7 +84,7 @@ export const Header = () => {
         <Title>
             Overview
         </Title>
-        <Search />
+        <Search placeholder='Search here'/>
         <Attention icon="message.svg" amount={4} />
         <Attention icon="notification.svg" amount={2} />
         <Profile />
