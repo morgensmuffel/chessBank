@@ -3,11 +3,13 @@ import styled from '@emotion/styled'
 const Root = styled.header`
     display: flex;
     align-items: center;
-    padding: 32px;
+    padding: 16px 40px;
+    border-bottom: dashed 1px #A0A0A0;
 
 `
 const Title = styled.div`
     margin-right: auto;
+    font-size: 28px;
 `
 
 const Search = styled.input`
@@ -25,29 +27,31 @@ const Search = styled.input`
 const RootAttention = styled.div`
     margin-right: 32px;
     position: relative;
-`
-const AttentionAmount = styled.div`
-  position: absolute;
-  top: -4px;
-  right: -10px;
-  text-align: center;
-  width: 12px;
-  height: 12px;
-  font-size: 10px;
-  background-color: #fc9e38;
-  border-radius: 16px;
-  transition: all 0.2s;
-  user-select: none;
-  :hover {
+    padding: 16px;
+    border-radius: 100px;
+    :hover {
     background: #3d90da;
   }
 
   :active {
     background: #ff9900;
   }
+
+`
+const AttentionAmount = styled.div`
+    position: absolute;
+    top: 12px;
+    right: 6px;
+    text-align: center;
+    width: 12px;
+    height: 12px;
+    font-size: 10px;
+    background-color: #fc9e38;
+    border-radius: 16px;
+    transition: all 0.2s;
+    user-select: none;
 `
 const RootProfile = styled.div`
-    margin-right: 24px;
     display: flex;
     align-items: center;
 `
@@ -58,7 +62,7 @@ const Avatar = styled.img`
     width: 48px;
     height: 48px;
     border-radius: 100%;
-    border: yellow solid 2px;
+    border: yellow solid 3px;
 `
 
 const Attention = (props: {icon: string, amount: number}) => {

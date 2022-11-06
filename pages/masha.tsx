@@ -10,7 +10,7 @@ export const Root = styled.div`
 
 const Drawer = styled.div`
   width: 240px;
-  padding: 32px;
+  padding: 24px;
   border-right: dashed 1px #A0A0A0;
 `
 
