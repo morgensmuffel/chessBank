@@ -1,5 +1,7 @@
 import { Header } from "../components/Header";
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
+import { CardsList } from "../components/Cards";
+
 
 export const Root = styled.div`
   display: flex;
@@ -98,8 +100,9 @@ export default function() {
       </Drawer>
       <Main>
         <Header />
+        <CardsList />
       </Main>
-        {/* <Header /> */}
+        
     </Root>
 
 }
