@@ -5,6 +5,8 @@ import { hideCardNumber } from './utils';
 
 const Root = styled.div`
     display: flex;
+    width: 100%;
+    overflow: auto;
 `
 
 const CardRoot = styled.div`
@@ -12,9 +14,10 @@ const CardRoot = styled.div`
     flex-direction: column;
     background: linear-gradient(225deg, yellow, blue);
     height: 240px;
-    width: 400px;
+    width: 370px;
     padding: 24px;
     border-radius: 16px;
+    margin-left: 20px;
 `
 
 const Header = styled.div`
@@ -50,7 +53,8 @@ const SecondRow = styled.div`
 `
 
 const Card = (props: {data: CardProps}) => {
-    const [isShowCardNumber, setShowCardNumber] = useState(false)
+    const [isShowCardNumber, setShowCardNumber] = useState(false);
+    const [isShowBalance, setShowBalance] = useState(false);
     return <CardRoot>
         <Header>
             <PaymentSystem>{props.data.paymentSystem}</PaymentSystem>
@@ -62,7 +66,7 @@ const Card = (props: {data: CardProps}) => {
         <Bottom>
             <FirstRow>
                 <span>Balance</span>
-                <span onDoubleClick={() => {
+                <span onClick={() => {
                     setShowCardNumber(!isShowCardNumber)
                 }}>{
                     isShowCardNumber 
@@ -71,10 +75,13 @@ const Card = (props: {data: CardProps}) => {
                 }</span>
             </FirstRow>
             <SecondRow>
-                <span>
-                    {props.data.currency}
-                    {props.data.balance}
-                </span>
+                <span onClick={() => {
+                    setShowBalance(!isShowBalance)
+                }}>{
+                    isShowBalance
+                        ? props.data.currency + props.data.balance
+                        : "******"
+                }</span>
                 <span>{format(props.data.expire, 'MM/yy')}</span>
             </SecondRow>
         </Bottom>
