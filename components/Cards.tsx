@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import {format} from 'date-fns';
+import { useState } from 'react';
+import { hideCardNumber } from './utils';
 
 const Root = styled.div`
     display: flex;
@@ -48,6 +50,7 @@ const SecondRow = styled.div`
 `
 
 const Card = (props: {data: CardProps}) => {
+    const [isShowCardNumber, setShowCardNumber] = useState(false)
     return <CardRoot>
         <Header>
             <PaymentSystem>{props.data.paymentSystem}</PaymentSystem>
@@ -59,7 +62,13 @@ const Card = (props: {data: CardProps}) => {
         <Bottom>
             <FirstRow>
                 <span>Balance</span>
-                <span>{props.data.cardNumber}</span>
+                <span onDoubleClick={() => {
+                    setShowCardNumber(!isShowCardNumber)
+                }}>{
+                    isShowCardNumber 
+                        ? props.data.cardNumber
+                        : hideCardNumber(props.data.cardNumber)
+                }</span>
             </FirstRow>
             <SecondRow>
                 <span>
