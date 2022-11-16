@@ -18,6 +18,7 @@ const CardRoot = styled.div`
     padding: 24px;
     border-radius: 16px;
     margin-left: 20px;
+    flex-shrink: 0;
 `
 
 const Header = styled.div`
@@ -115,10 +116,13 @@ const secondCardData: CardProps = {
     nfc: false
 }
 
+
+
 export const CardsList = () => {
     return <Root>
         <Card data={firstCardData} />
         <Card data={secondCardData} />
+        <Card data={firstCardData} />
         <Card data={firstCardData} />
     </Root>
 }

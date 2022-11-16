@@ -1,6 +1,7 @@
 import { Header } from "../components/Header";
 import styled from '@emotion/styled';
 import { CardsList } from "../components/Cards";
+import { Limits } from "../components/limits";
 
 
 export const Root = styled.div`
@@ -18,6 +19,7 @@ const Drawer = styled.div`
 
 const Main = styled.div`
   flex-grow: 1;
+  min-width: 0;
 `
 
 const Logo = styled.div`
@@ -101,6 +103,7 @@ export default function() {
       <Main>
         <Header />
         <CardsList />
+        <Limits />
       </Main>
         
     </Root>
