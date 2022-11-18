@@ -2,6 +2,9 @@ import { Header } from "../components/Header";
 import styled from '@emotion/styled';
 import { CardsList } from "../components/Cards";
 import { Limits } from "../components/limits";
+import { BalanceGraph } from "../components/BalanceGraph";
+import { LastActivities } from "../components/LastActivities";
+import { colors } from "../components/styleConfig";
 
 
 export const Root = styled.div`
@@ -46,7 +49,7 @@ const ItemWraper = styled.div`
   transition: all 0.2s;
   user-select: none;
   :hover {
-    background: #3d90da;
+    background: ${colors.button};
   }
 
   :active {
@@ -64,10 +67,20 @@ const Divider = styled.hr`
   margin: 36px 0 56px;
 `
 
+const Row = styled.div`
+  display: flex;
+  padding: 40px;
+`
+
+const Column = styled.div`
+  
+`
+
 type ItemProps = {
   text: string, 
   icon?: string
 }
+
 const Item = (props: ItemProps) => {
   return <ItemWraper>
     <img src={`/icons/${props.icon}`} width={32} />
@@ -103,7 +116,13 @@ export default function() {
       <Main>
         <Header />
         <CardsList />
-        <Limits />
+        <Row>
+          <Column>
+            <Limits />
+            <BalanceGraph />
+          </Column>
+          <LastActivities />
+        </Row>
       </Main>
         
     </Root>

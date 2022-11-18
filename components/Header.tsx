@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { colors } from './styleConfig'
 
 const Root = styled.header`
     display: flex;
@@ -30,7 +31,7 @@ const RootAttention = styled.div`
     padding: 16px;
     border-radius: 100px;
     :hover {
-    background: #3d90da;
+    background:  ${colors.button};
   }
 
   :active {

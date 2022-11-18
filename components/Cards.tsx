@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import {format} from 'date-fns';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { hideCardNumber } from './utils';
+import axios from 'axios';
 
 const Root = styled.div`
     display: flex;
@@ -17,7 +18,8 @@ const CardRoot = styled.div`
     width: 370px;
     padding: 24px;
     border-radius: 16px;
-    margin-left: 20px;
+    margin-left: 40px;
+    margin-top: 40px;
     flex-shrink: 0;
 `
 
@@ -83,7 +85,7 @@ const Card = (props: {data: CardProps}) => {
                         ? props.data.currency + props.data.balance
                         : "******"
                 }</span>
-                <span>{format(props.data.expire, 'MM/yy')}</span>
+                {/* <span>{format(props.data.expire, 'MM/yy')}</span> */}
             </SecondRow>
         </Bottom>
     </CardRoot>
@@ -116,13 +118,21 @@ const secondCardData: CardProps = {
     nfc: false
 }
 
-
-
 export const CardsList = () => {
+    const [cardsData, setCardsData] = useState([])
+
+    
+
+    useEffect(() => {
+        console.log('fire')
+        axios.get('https://my-json-server.typicode.com/morgensmuffel/chessBankAPI/users/1').then(response => {
+            setCardsData(response.data.cards)
+        })
+    }, [])
+
     return <Root>
-        <Card data={firstCardData} />
-        <Card data={secondCardData} />
-        <Card data={firstCardData} />
-        <Card data={firstCardData} />
+        {
+            cardsData.map(cardData => <Card data={cardData} />)
+        }
     </Root>
 }
