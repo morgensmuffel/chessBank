@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {format} from 'date-fns';
+import {format, parseISO} from 'date-fns';
 import { useEffect, useState } from 'react';
 import { hideCardNumber } from './utils';
 import axios from 'axios';
@@ -85,7 +85,7 @@ const Card = (props: {data: CardProps}) => {
                         ? props.data.currency + props.data.balance
                         : "******"
                 }</span>
-                {/* <span>{format(props.data.expire, 'MM/yy')}</span> */}
+                <span>{format(parseISO(props.data.expire),  'MM/yy')}</span>
             </SecondRow>
         </Bottom>
     </CardRoot>
@@ -99,7 +99,7 @@ type CardProps = {
     balance: number;
     currency: string;
     cardNumber: string;
-    expire: Date
+    expire: string
 }
 
 const firstCardData: CardProps = {
@@ -109,7 +109,7 @@ const firstCardData: CardProps = {
     balance: 6450,
     currency: "$",
     cardNumber: "1214161822446688",
-    expire: new Date(2024, 10)
+    expire: "toDo Delete This"
 }
 
 const secondCardData: CardProps = {

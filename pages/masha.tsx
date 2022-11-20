@@ -1,7 +1,7 @@
 import { Header } from "../components/Header";
 import styled from '@emotion/styled';
 import { CardsList } from "../components/Cards";
-import { Limits } from "../components/limits";
+import { Limits } from "../components/Limits";
 import { BalanceGraph } from "../components/BalanceGraph";
 import { LastActivities } from "../components/LastActivities";
 import { colors } from "../components/styleConfig";
