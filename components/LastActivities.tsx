@@ -6,6 +6,8 @@ import { colors } from './styleConfig';
 const ActivitiesRoot = styled.div`
     margin-left: auto;
     width: 324px;
+    display: flex;
+    flex-direction: column;
 `
 
 const Header = styled.div`
@@ -20,6 +22,8 @@ const ItemRoot = styled.div<{isExpand: boolean}>`
     margin-bottom: 12px;
     flex-direction: column;
     background: ${props => props.isExpand ? '#3363cb' : 'none'};
+    padding: 20px 20px 30px;
+    border-radius: 10px;
 `
 
 const IconWraper = styled.div`
@@ -54,6 +58,15 @@ const Arrow = styled.div`
     margin-left: 16px;
 `
 
+const CardNumber = styled.div`
+    font-size: 22px;
+    margin-top: 30px;
+`
+
+const ActivityList = styled.div`
+    overflow: auto;
+`
+
 type Activity = {
     category: 'grocery' | 'online' | 'taxi',
     place: string,
@@ -82,9 +95,8 @@ const Activities: Activity[] = [
     FirstActivity
 ]
 
-const Item = (props: {icon?: string, data: Activity}) => {
-    const [isExpand, setExpand] = useState(false);
-    return <ItemRoot onClick={() => setExpand(!isExpand)} isExpand={isExpand}>
+const Item = (props: {icon?: string, data: Activity, isOpen: boolean, onClick: () => void }) => {
+    return <ItemRoot onClick={() => props.onClick()} isExpand={props.isOpen}>
         <Row>
             <IconWraper>
                 <img src={`/icons/${props.data.category}.svg`} width={24} />
@@ -100,8 +112,10 @@ const Item = (props: {icon?: string, data: Activity}) => {
                 {'>'}
             </Arrow>
         </Row>
-        {isExpand 
-            ? props.data.card
+        {props.isOpen 
+            ? <CardNumber>
+                from: {props.data.card}
+            </CardNumber> 
             : null
         }
     </ItemRoot>
@@ -110,6 +124,7 @@ const Item = (props: {icon?: string, data: Activity}) => {
 
 
 export const LastActivities = () => {
+    const [openIndex, setOpenIndex] = useState(-1);
     return <ActivitiesRoot>
         <Header>
             <h4> 
@@ -119,6 +134,8 @@ export const LastActivities = () => {
                 Ask a report
             </button>
         </Header>
-        {Activities.map((activity) => <Item data={activity} />)}
+        <ActivityList>
+            {Activities.map((activity, index) => <Item data={activity} isOpen={index === openIndex} onClick={() => setOpenIndex(index)} />)}
+        </ActivityList> 
     </ActivitiesRoot>
 }

@@ -8,6 +8,7 @@ const Root = styled.div`
     display: flex;
     width: 100%;
     overflow: auto;
+    flex-shrink: 0;
 `
 
 const CardRoot = styled.div`

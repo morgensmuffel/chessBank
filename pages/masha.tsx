@@ -10,7 +10,7 @@ import { colors } from "../components/styleConfig";
 export const Root = styled.div`
   display: flex;
   background: #050609;
-  min-height: 100vh;
+  height: 100vh;
   color: #ffffff;
 `
 
@@ -23,6 +23,8 @@ const Drawer = styled.div`
 const Main = styled.div`
   flex-grow: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 `
 
 const Logo = styled.div`
@@ -70,6 +72,7 @@ const Divider = styled.hr`
 const Row = styled.div`
   display: flex;
   padding: 40px;
+  min-height: 0;
 `
 
 const Column = styled.div`
