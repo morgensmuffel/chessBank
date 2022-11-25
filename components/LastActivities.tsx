@@ -135,7 +135,10 @@ export const LastActivities = () => {
             </button>
         </Header>
         <ActivityList>
-            {Activities.map((activity, index) => <Item data={activity} isOpen={index === openIndex} onClick={() => setOpenIndex(index)} />)}
+            {Activities.map((activity, index) => <Item 
+            data={activity} 
+            isOpen={index === openIndex} 
+            onClick={() => setOpenIndex(openIndex === index ? -1 : index)} />)}
         </ActivityList> 
     </ActivitiesRoot>
 }
