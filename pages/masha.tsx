@@ -1,10 +1,17 @@
 import { Header } from "../components/Header";
 import styled from '@emotion/styled';
 import { CardsList } from "../components/Cards";
-import { Limits } from "../components/Limits";
+// import { Limits } from "../components/Limits";
 import { BalanceGraph } from "../components/BalanceGraph";
 import { LastActivities } from "../components/LastActivities";
 import { colors } from "../components/styleConfig";
+
+import dynamic from "next/dynamic";
+
+const Limits = dynamic(
+  import("../components/Limits").then(res => res.Limits),
+  { ssr: false }
+);
 
 
 export const Root = styled.div`
@@ -80,7 +87,7 @@ const Column = styled.div`
 `
 
 type ItemProps = {
-  text: string, 
+  text: string,
   icon?: string
 }
 
@@ -94,40 +101,40 @@ const Item = (props: ItemProps) => {
 }
 
 
-export default function() {
-    return <Root>
-      <Drawer>
-        <Logo>
-          <img src="/logo.svg" width={32} />
-          <span>Chess</span>
-        </Logo>
-        <Menu>
-          <Title>Menu</Title>
-          <Item text="Overview" icon="home.svg"/>
-          <Item text="Cards" icon="card.svg"/>
-          <Item text="Statistics" icon="stat.svg"/>
-        </Menu>
-        <Divider />
-        <Account>
-          <Title>Account</Title>
-          <Item text="Profile" icon="profile.svg"/>
-          <Item text="Message" icon="message.svg"/>
-          <Item text="Notification" icon="notification.svg"/>
-          <Item text="Settings" icon="settings.svg"/>
-        </Account>
-      </Drawer>
-      <Main>
-        <Header />
-        <CardsList />
-        <Row>
-          <Column>
-            <Limits />
-            <BalanceGraph />
-          </Column>
-          <LastActivities />
-        </Row>
-      </Main>
-        
-    </Root>
+export default function () {
+  return <Root>
+    <Drawer>
+      <Logo>
+        <img src="/logo.svg" width={32} />
+        <span>Chess</span>
+      </Logo>
+      <Menu>
+        <Title>Menu</Title>
+        <Item text="Overview" icon="home.svg" />
+        <Item text="Cards" icon="card.svg" />
+        <Item text="Statistics" icon="stat.svg" />
+      </Menu>
+      <Divider />
+      <Account>
+        <Title>Account</Title>
+        <Item text="Profile" icon="profile.svg" />
+        <Item text="Message" icon="message.svg" />
+        <Item text="Notification" icon="notification.svg" />
+        <Item text="Settings" icon="settings.svg" />
+      </Account>
+    </Drawer>
+    <Main>
+      <Header />
+      <CardsList />
+      <Row>
+        <Column>
+          <Limits />
+          <BalanceGraph />
+        </Column>
+        <LastActivities />
+      </Row>
+    </Main>
+
+  </Root>
 
 }

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 
+
 const data = [
     { name: 'Group A', value: 400 },
     { name: 'Group B', value: 300 },
@@ -14,7 +15,7 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 const LimitRoot = styled.div`
     display: flex;
     align-items: center;
-    margin-right: 144px;
+    margin-right: 112px;
 `
 
 const LimitsRoot = styled.div`
@@ -22,7 +23,7 @@ const LimitsRoot = styled.div`
 `
 
 const RightColumn = styled.div`
-    margin-left: 24px;
+    margin-left: 32px;
 `
 
 const CreditLimit = styled.div`
@@ -42,13 +43,29 @@ const Spends = styled.div`
 
 const Max = styled.div`
     margin-left: 4px;
+    color: #8e8e8e;
 `
 
-const Limit = () => {
+type LimitData={expenses: number, limit: number} 
+
+const CreditLimitData: LimitData={
+    expenses: 2000,
+    limit: 3000
+}
+
+const OnlineLimitData: LimitData={
+    expenses: 500,
+    limit: 4000 
+}
+
+const Limit = (props: {data: LimitData, title: string}) => {
     return <LimitRoot>
         <PieChart width={160} height={160}>
             <Pie
-                data={[{ value: 1 }, { value: 1 }]}
+                data={[
+                    { value: (props.data.limit / props.data.expenses) - 1 },
+                    { value: 1 },
+                ]}
                 //   cx={120}
                 //   cy={200}
                 innerRadius={50}
@@ -56,25 +73,25 @@ const Limit = () => {
                 fill="#8884d8"
                 paddingAngle={5}
                 dataKey="value"
-                startAngle={0}
-                endAngle={360}
+                startAngle={90}
+                endAngle={360 + 90}
             >
 
-                <Cell fill="green" />
                 <Cell fill="#54545492" />
+                <Cell fill="#ecfb4c" />
 
             </Pie>
         </PieChart>
         <RightColumn>
             <CreditLimit>
-                Credit limit
+                {props.title}
             </CreditLimit>
             <Row>
                 <Spends>
-                    $1000
+                    ${props.data.expenses}
                 </Spends>
                 <Max>      
-                    /&nbsp;2000
+                    /&nbsp;{props.data.limit}
                 </Max> 
             </Row> 
         </RightColumn>
@@ -83,7 +100,7 @@ const Limit = () => {
 
 export const Limits = () => {
     return <LimitsRoot>
-        <Limit />
-        <Limit />
+        <Limit title={"Credit Limit"} data={CreditLimitData}/>
+        <Limit title={"Online Limit"} data={OnlineLimitData}/>
     </LimitsRoot>
 }
