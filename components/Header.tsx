@@ -30,6 +30,7 @@ const RootAttention = styled.div`
     position: relative;
     padding: 16px;
     border-radius: 100px;
+    cursor: pointer;
     :hover {
     background:  ${colors.button};
   }

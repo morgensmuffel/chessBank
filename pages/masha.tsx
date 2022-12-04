@@ -17,7 +17,7 @@ const Limits = dynamic(
 export const Root = styled.div`
   display: flex;
   background: #050609;
-  height: 100vh;
+  min-height: 100vh;
   color: #ffffff;
 `
 
@@ -57,6 +57,7 @@ const ItemWraper = styled.div`
   border-radius: 16px;
   transition: all 0.2s;
   user-select: none;
+  cursor: pointer;
   :hover {
     background: ${colors.button};
   }

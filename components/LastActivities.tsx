@@ -24,6 +24,10 @@ const ItemRoot = styled.div<{isExpand: boolean}>`
     background: ${props => props.isExpand ? '#3363cb' : 'none'};
     padding: 20px 20px 30px;
     border-radius: 10px;
+    :hover {
+    background: ${colors.button};
+  }
+  cursor: pointer;
 `
 
 const IconWraper = styled.div`
@@ -65,6 +69,16 @@ const CardNumber = styled.div`
 
 const ActivityList = styled.div`
     overflow: auto;
+`
+
+const Button = styled.button`
+    cursor: pointer;
+    background-color: #f4ff2c;
+    padding: 8px;
+    border-radius: 6px;
+    :hover{
+        background: ${colors.button}
+    }
 `
 
 type Activity = {
@@ -130,9 +144,9 @@ export const LastActivities = () => {
             <h4> 
                 Last activities
             </h4>
-            <button>
+            <Button>
                 Ask a report
-            </button>
+            </Button>
         </Header>
         <ActivityList>
             {Activities.map((activity, index) => <Item 
